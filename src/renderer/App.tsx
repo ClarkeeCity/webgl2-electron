@@ -2,10 +2,15 @@ import './App.css';
 import * as twgl from 'twgl.js';
 import { useEffect } from 'react';
 import * as THREE from 'three';
+import { Models } from './gl-utils/models';
 import * as ShaderSources from './gl-utils/shader-sources';
 
 export default function App() {
   useEffect(() => {
+    (async function fetchModel() {
+      const response = await fetch('src/renderer/index.tsx');
+      console.log(await response.text());
+    })();
     const canvas = document.getElementById('renderWindow') as HTMLCanvasElement;
     const gl = canvas.getContext('webgl2') as WebGL2RenderingContext;
     if (!gl) return <span>something went wrong :c</span>;
